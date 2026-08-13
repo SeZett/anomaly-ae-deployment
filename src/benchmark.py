@@ -68,6 +68,25 @@ if not npz_files:
 
 print(f"Found {len(npz_files)} NPZ files")
 
+# ============================================================================
+# Warmup
+# ============================================================================
+
+warmup_file = npz_files[0]
+
+image, _ = npz_to_tensor(warmup_file)
+
+input_tensor = torch.from_numpy(image)
+input_tensor = input_tensor.unsqueeze(0).to(
+    device=device,
+    dtype=torch.float32
+)
+
+with torch.inference_mode():
+    _ = model(input_tensor)
+
+print("Warmup completed")
+
 
 # ============================================================================
 # Benchmark loop
