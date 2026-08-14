@@ -17,9 +17,9 @@ NPZ time series
 ```
 
 ## Build the image:
-
+```cmd
 docker build --no-cache -t anomaly-ae .
-
+```
 ## Run Single Inference
 ```python
 python src/inference.py
