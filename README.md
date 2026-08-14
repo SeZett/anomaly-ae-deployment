@@ -16,6 +16,10 @@ NPZ time series
 → Threshold decision
 ```
 
+## Build the image:
+
+docker build --no-cache -t anomaly-ae .
+
 ## Run Single Inference
 ```python
 python src/inference.py
@@ -28,9 +32,12 @@ Runs the complete pipeline for a single .npz file and prints:
 - threshold
 - timing information
 
-## Run the benchmark:
+## Run the benchmark / Start from Repo-Root directory:
 ```cmd
-docker run -v ./data:/app/data -v ./results:/app/results anomaly-ae
+docker run --rm \
+  -v $(pwd)/data:/app/data \
+  -v $(pwd)/results:/app/results \
+  anomaly-ae
 ```
 Processes all .npz files located in the data/ directory
 
